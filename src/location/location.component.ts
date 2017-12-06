@@ -16,6 +16,15 @@ export class PipLocationComponent implements OnInit, AfterViewInit {
     private map: any = null;
     private marker: any = null;
     private _initialized: boolean = false;
+    private _positionChanged: boolean = false;
+    private mapOptions = {
+        zoom: 12,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        disableDefaultUI: true,
+        disableDoubleClickZoom: true,
+        scrollwheel: false,
+        draggable: false
+    };
 
     @Input() set collapsable(is: boolean) {
         this.isCollapsabele = is;
@@ -24,9 +33,10 @@ export class PipLocationComponent implements OnInit, AfterViewInit {
     @Input() set locationPos(position: any) {
         if (this.verifyPosition(position)) {
             this._position = position;
-            if (this.map != null) {
-                if (!this.showMap) this._initialized = false;
-                this.moveMap();
+            if (this.showMap) {
+                this.moveMap(this.map, this.marker, this._position);
+            } else {
+                this._positionChanged = true;
             }
         } else console.warn('pipLocation: Incorrect location data');
     }
@@ -36,7 +46,7 @@ export class PipLocationComponent implements OnInit, AfterViewInit {
     @Input() icon: string = 'place';
     @Input() disabled: boolean = false;
 
-    ngOnInit() {}
+    ngOnInit() { }
 
     constructor(
         private renderer: Renderer,
@@ -45,38 +55,42 @@ export class PipLocationComponent implements OnInit, AfterViewInit {
         renderer.setElementClass(elRef.nativeElement, 'pip-location', true);
     }
 
-    ngAfterViewInit() { 
-        this.initMap();
+    ngAfterViewInit() {
+        this._mapContainer = this.elRef.nativeElement.querySelector('.pip-location-container');
+        this.initMap(this._mapContainer, this.mapOptions, this._position, () => {
+            if (this.showMap) this._initialized = true;
+        });
     }
 
     public toggleMap() {
         this.showMap = !this.showMap;
-        if (this.showMap && !this._initialized) {
-            setTimeout(() => {
-                this.initMap();
-            }, 350);
+        if (this.showMap) {
+            if (!this._initialized) {
+                setTimeout(() => {
+                    this.initMap(this._mapContainer, this.mapOptions, this._position, () => {
+                        if (this.showMap) this._initialized = true;
+                    });
+                }, 350);
+            }
+
+            if (this._positionChanged) {
+                setTimeout(() => {
+                    this.moveMap(this.map, this.marker, this._position);
+                    this._positionChanged = false;
+                }, 350);
+            }
         }
     }
 
-    private initMap() {
+    private initMap(mapContainer, mapOptions, position, callback?: Function) {
         if (!this.isCollapsabele) return;
 
-        this._mapContainer = this.elRef.nativeElement.querySelector('.pip-location-container');
-
         const coordinates = new google.maps.LatLng(
-            this._position.coordinates[0],
-            this._position.coordinates[1]
+            position.coordinates[0],
+            position.coordinates[1]
         );
 
-        const mapOptions = {
-            center: coordinates,
-            zoom: 12,
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-            disableDefaultUI: true,
-            disableDoubleClickZoom: true,
-            scrollwheel: false,
-            draggable: false
-        };
+        mapOptions.center = coordinates;
 
         this.map = new google.maps.Map(this._mapContainer, mapOptions);
         this.marker = new google.maps.Marker({
@@ -85,17 +99,17 @@ export class PipLocationComponent implements OnInit, AfterViewInit {
             map: this.map
         });
 
-        if (this.showMap) this._initialized = true;
+        if (callback) callback();
     }
 
-    private moveMap() {
+    private moveMap(map, marker, newPosition) {
         const coordinates = new google.maps.LatLng(
-            this._position.coordinates[0],
-            this._position.coordinates[1]
+            newPosition.coordinates[0],
+            newPosition.coordinates[1]
         );
 
-        this.marker.setPosition(coordinates);
-        this.map.panTo(coordinates);
+        marker.setPosition(coordinates);
+        map.panTo(coordinates);
     }
 
     private verifyPosition(position: any) {
