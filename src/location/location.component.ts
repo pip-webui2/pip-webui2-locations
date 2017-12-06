@@ -1,6 +1,9 @@
-import { Component, Input, Output, OnInit, AfterViewInit, EventEmitter, Renderer, ElementRef, HostListener } from '@angular/core';
-import * as _ from 'lodash';
 declare let google: any;
+
+import * as _ from 'lodash';
+import { Component, Input, Output, OnInit, AfterViewInit, EventEmitter, Renderer, ElementRef, HostListener } from '@angular/core';
+
+import { initMap, moveMap, verifyPosition } from '../shared/locations-utils';
 
 @Component({
     selector: 'pip-location',
@@ -31,10 +34,10 @@ export class PipLocationComponent implements OnInit, AfterViewInit {
     }
     @Input() public locationName: string;
     @Input() set locationPos(position: any) {
-        if (this.verifyPosition(position)) {
+        if (verifyPosition(position)) {
             this._position = position;
             if (this.showMap) {
-                this.moveMap(this.map, this.marker, this._position);
+                moveMap(this.map, this.marker, this._position);
             } else {
                 this._positionChanged = true;
             }
@@ -57,9 +60,13 @@ export class PipLocationComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit() {
         this._mapContainer = this.elRef.nativeElement.querySelector('.pip-location-container');
-        this.initMap(this._mapContainer, this.mapOptions, this._position, () => {
-            if (this.showMap) this._initialized = true;
-        });
+        if (this.isCollapsabele) {
+            let result = initMap(this._mapContainer, this.mapOptions, this._position, () => {
+                if (this.showMap) this._initialized = true;
+            });
+            this.map = result.map;
+            this.marker = result.marker;
+        }
     }
 
     public toggleMap() {
@@ -67,52 +74,22 @@ export class PipLocationComponent implements OnInit, AfterViewInit {
         if (this.showMap) {
             if (!this._initialized) {
                 setTimeout(() => {
-                    this.initMap(this._mapContainer, this.mapOptions, this._position, () => {
-                        if (this.showMap) this._initialized = true;
-                    });
+                    if (this.isCollapsabele) {
+                        let result = initMap(this._mapContainer, this.mapOptions, this._position, () => {
+                            if (this.showMap) this._initialized = true;
+                        });
+                        this.map = result.map;
+                        this.marker = result.marker;
+                    }
                 }, 350);
             }
 
             if (this._positionChanged) {
                 setTimeout(() => {
-                    this.moveMap(this.map, this.marker, this._position);
+                    moveMap(this.map, this.marker, this._position);
                     this._positionChanged = false;
                 }, 350);
             }
         }
-    }
-
-    private initMap(mapContainer, mapOptions, position, callback?: Function) {
-        if (!this.isCollapsabele) return;
-
-        const coordinates = new google.maps.LatLng(
-            position.coordinates[0],
-            position.coordinates[1]
-        );
-
-        mapOptions.center = coordinates;
-
-        this.map = new google.maps.Map(this._mapContainer, mapOptions);
-        this.marker = new google.maps.Marker({
-            position: coordinates,
-            animation: google.maps.Animation.DROP,
-            map: this.map
-        });
-
-        if (callback) callback();
-    }
-
-    private moveMap(map, marker, newPosition) {
-        const coordinates = new google.maps.LatLng(
-            newPosition.coordinates[0],
-            newPosition.coordinates[1]
-        );
-
-        marker.setPosition(coordinates);
-        map.panTo(coordinates);
-    }
-
-    private verifyPosition(position: any) {
-        return position.coordinates && _.isArray(position.coordinates) && position.coordinates.length == 2;
     }
 }
