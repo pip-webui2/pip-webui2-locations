@@ -4,12 +4,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { MatButtonModule, MatIconModule, MatButtonToggleModule } from '@angular/material';
 
-import { ToggleButtonsExampleComponent } from './toggle-buttons-example.component';
-//import { PipButtonToggleGroupModule } from '../pip-webui2-buttons';
+import { LocationEditExampleComponent } from './location-edit-example.component';
+import { PiplocationEditModule } from '../pip-webui2-locations';
 
 @NgModule({
   declarations: [
-    ToggleButtonsExampleComponent
+    LocationEditExampleComponent
   ],
   imports: [
     BrowserModule,
@@ -20,13 +20,13 @@ import { ToggleButtonsExampleComponent } from './toggle-buttons-example.componen
     MatIconModule,
     MatButtonToggleModule,
 
-    //PipButtonToggleGroupModule
+    PiplocationEditModule
   ],
   exports: [
-    ToggleButtonsExampleComponent
+    LocationEditExampleComponent
   ],
   providers: [
     
   ],
 })
-export class ToggleButtonsExampleModule { }
+export class LocationEditExampleModule { }

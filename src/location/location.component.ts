@@ -61,7 +61,7 @@ export class PipLocationComponent implements OnInit, AfterViewInit {
     ngAfterViewInit() {
         this._mapContainer = this.elRef.nativeElement.querySelector('.pip-location-container');
         if (this.isCollapsabele) {
-            let result = initMap(this._mapContainer, this.mapOptions, this._position, () => {
+            let result = initMap(this._mapContainer, this.mapOptions, this._position, true, null, () => {
                 if (this.showMap) this._initialized = true;
             });
             this.map = result.map;
@@ -75,7 +75,7 @@ export class PipLocationComponent implements OnInit, AfterViewInit {
             if (!this._initialized) {
                 setTimeout(() => {
                     if (this.isCollapsabele) {
-                        let result = initMap(this._mapContainer, this.mapOptions, this._position, () => {
+                        let result = initMap(this._mapContainer, this.mapOptions, this._position, true, null, () => {
                             if (this.showMap) this._initialized = true;
                         });
                         this.map = result.map;

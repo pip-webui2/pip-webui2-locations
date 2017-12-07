@@ -1,20 +1,29 @@
 declare let google: any;
 import * as _ from 'lodash';
 
-export function initMap(mapContainer, mapOptions, position, callback?: Function) {
+export function initMap(mapContainer, mapOptions, position, showMarker = true, markerOptions?, callback?: Function) {
     const coordinates = new google.maps.LatLng(
         position.coordinates[0],
         position.coordinates[1]
     );
 
-    mapOptions.center = coordinates;
-
+    mapOptions.center = mapOptions.center || coordinates;
     let map = new google.maps.Map(mapContainer, mapOptions);
-    let marker = new google.maps.Marker({
-        position: coordinates,
-        animation: google.maps.Animation.DROP,
-        map: map
-    });
+    let marker = null;
+
+    if (showMarker) {
+        if (markerOptions) {
+            markerOptions.position = markerOptions.position || coordinates;
+            markerOptions.map = map;
+        }
+        else markerOptions = {
+            position: coordinates,
+            animation: google.maps.Animation.DROP,
+            map: map
+        };
+
+        marker = new google.maps.Marker(markerOptions);
+    }
 
     if (callback) callback();
 
@@ -30,7 +39,7 @@ export function moveMap(map, marker, newPosition) {
         newPosition.coordinates[1]
     );
 
-    marker.setPosition(coordinates);
+    if (marker) marker.setPosition(coordinates);
     map.panTo(coordinates);
 }
 

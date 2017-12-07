@@ -25,6 +25,9 @@ export class AppComponent {
     },
     {
       name: 'Location Ip', id: 'location_ip', route: 'location_ip'
+    },
+    {
+      name: 'Location Edit', id: 'location_edit', route: 'location_edit'
     }
   ];
   @ViewChild('sidenav') sidenav: MatSidenav;

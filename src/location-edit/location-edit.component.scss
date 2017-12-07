@@ -1,0 +1,109 @@
+@import '~@angular/material/theming';
+@import '~pip-webui2-themes/src/styles.scss';
+@include mat-core();
+@mixin location-edit-mixin($theme) {
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+     :host button {
+        background: mat-color($background, card);
+        color: mat-color($foreground, text);
+    }
+}
+
+.unicorn-dark-theme {
+    @include location-edit-mixin($dark-theme);
+}
+
+.candy-theme {
+    @include location-edit-mixin($candy-app-theme);
+}
+
+.pip-blue-theme {
+    @include location-edit-mixin($pip-blue-theme);
+}
+
+.pip-grey-theme {
+    @include location-edit-mixin($pip-grey-theme);
+}
+
+.pip-navy-theme {
+    @include location-edit-mixin($pip-navy-theme);
+}
+
+.pip-amber-theme {
+    @include location-edit-mixin($pip-amber-theme);
+}
+
+.pip-green-theme {
+    @include location-edit-mixin($pip-green-theme);
+}
+
+.pip-orange-theme {
+    @include location-edit-mixin($pip-orange-theme);
+}
+
+.pip-pink-theme {
+    @include location-edit-mixin($pip-pink-theme);
+}
+
+.pip-dark-theme {
+    @include location-edit-mixin($pip-dark-theme);
+}
+
+.pip-black-theme {
+    @include location-edit-mixin($pip-black-theme);
+}
+
+.bootbarn-warm-theme {
+    @include location-edit-mixin($bootbarn-warm-theme);
+}
+
+.bootbarn-cool-theme {
+    @include location-edit-mixin($bootbarn-cool-theme);
+}
+
+.bootbarn-mono-theme {
+    @include location-edit-mixin($bootbarn-mono-theme);
+}
+
+:host {
+    display: block;
+    position: relative;
+    .relative-container {
+        position: relative;
+        height: calc(100% - 45px);
+        margin-top: -19px;
+    }
+    .map-container {
+        width: 100%;
+        height: 100%;
+    }
+
+    mat-form-field {
+        width: 100%;
+    }
+
+    button {
+        position: absolute;
+    }
+
+    .zoom-in {
+        top: 16px;
+        right: 16px;
+    }
+
+    .zoom-out {
+        top: 64px;
+        right: 16px;
+    }
+
+    .location {
+        bottom: 16px;
+        left: 16px;
+    }
+
+    .marker {
+        bottom: 16px;
+        right: 16px;
+    }
+}

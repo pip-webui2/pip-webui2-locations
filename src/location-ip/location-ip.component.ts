@@ -61,7 +61,7 @@ export class PipLocationIpComponent implements OnInit, AfterViewInit {
             console.log('ok ');
             this.error = false;
             if (!this._initialized) {
-                let results = initMap(this.elRef.nativeElement.querySelector('.map-container'), this.mapOptions, this._position, () => {
+                let results = initMap(this.elRef.nativeElement.querySelector('.map-container'), this.mapOptions, this._position, true, null, () => {
                     this._initialized = true;
                 });
                 this.map = results.map;

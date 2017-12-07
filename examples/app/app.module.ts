@@ -14,16 +14,16 @@ import { AppComponent } from './app.component';
 
 import { LocationIpExampleModule } from './location-ip-example/location-ip-example.module';
 import { LocationExampleModule } from './location-example/location-example.module';
-import { ToggleButtonsExampleModule } from './toggle-buttons-example/toggle-buttons-example.module';
+import { LocationEditExampleModule } from './location-edit-example/location-edit-example.module';
 
 import { LocationExampleComponent } from './location-example/location-example.component';
 import { LocationIpExampleComponent } from './location-ip-example/location-ip-example.component';
-import { ToggleButtonsExampleComponent } from './toggle-buttons-example/toggle-buttons-example.component';
+import { LocationEditExampleComponent } from './location-edit-example/location-edit-example.component';
 
 const appRoutes: Routes = [
   { path: 'location', component: LocationExampleComponent },
   { path: 'location_ip', component: LocationIpExampleComponent },
-  { path: 'toggle_buttons', component: ToggleButtonsExampleComponent },
+  { path: 'location_edit', component: LocationEditExampleComponent },
   { path: '', pathMatch: 'full', redirectTo: 'location' }
 ];
 
@@ -48,7 +48,7 @@ const appRoutes: Routes = [
     ExampleListModule,
     LocationIpExampleModule,
     LocationExampleModule,
-    ToggleButtonsExampleModule,
+    LocationEditExampleModule,
 
     RouterModule.forRoot(appRoutes, { useHash: true })
   ],
