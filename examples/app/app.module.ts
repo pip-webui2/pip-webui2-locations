@@ -12,17 +12,17 @@ import { PipThemesModule } from 'pip-webui2-themes';
 import { ExampleListModule } from './examples-list/examples-list.module';
 import { AppComponent } from './app.component';
 
-import { DrilldownListExampleModule } from './drilldown-list-example/drilldown-list-example.module';
+import { LocationIpExampleModule } from './location-ip-example/location-ip-example.module';
 import { LocationExampleModule } from './location-example/location-example.module';
 import { ToggleButtonsExampleModule } from './toggle-buttons-example/toggle-buttons-example.module';
 
 import { LocationExampleComponent } from './location-example/location-example.component';
-import { DrilldownListExampleComponent } from './drilldown-list-example/drilldown-list-example.component';
+import { LocationIpExampleComponent } from './location-ip-example/location-ip-example.component';
 import { ToggleButtonsExampleComponent } from './toggle-buttons-example/toggle-buttons-example.component';
 
 const appRoutes: Routes = [
   { path: 'location', component: LocationExampleComponent },
-  { path: 'drilldown_list', component: DrilldownListExampleComponent },
+  { path: 'location_ip', component: LocationIpExampleComponent },
   { path: 'toggle_buttons', component: ToggleButtonsExampleComponent },
   { path: '', pathMatch: 'full', redirectTo: 'location' }
 ];
@@ -46,7 +46,7 @@ const appRoutes: Routes = [
     PipThemesModule,
 
     ExampleListModule,
-    DrilldownListExampleModule,
+    LocationIpExampleModule,
     LocationExampleModule,
     ToggleButtonsExampleModule,
 

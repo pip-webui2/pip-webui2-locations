@@ -37,3 +37,11 @@ export function moveMap(map, marker, newPosition) {
 export function verifyPosition(position: any) {
     return position.coordinates && _.isArray(position.coordinates) && position.coordinates.length == 2;
 }
+
+export function generatePosition(latitude: any, longitude: any) {
+    return {
+        coordinates: [
+            latitude, longitude
+        ]
+    };
+}

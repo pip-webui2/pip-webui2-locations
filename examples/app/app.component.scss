@@ -28,7 +28,7 @@ examples-list {
     z-index: 10;
     position: relative;
 }
-::ng-deep location-example, ::ng-deep drilldown-list-example, ::ng-deep toggle-buttons-example {
+::ng-deep location-example, ::ng-deep location-ip-example, ::ng-deep toggle-buttons-example {
     flex: 1 1 100%;
     padding: 16px;
 }

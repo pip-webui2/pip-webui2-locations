@@ -1,0 +1,11 @@
+<mat-form-field >
+    <input matInput placeholder="Ip address" [(ngModel)]="ipAddress">
+</mat-form-field>
+<pip-location-ip [ipAddress]="ipAddress" (onExtraInfo)="getExtraInfo($event)"></pip-location-ip>
+
+<mat-card>
+    <h3>Extra information:</h3>
+    <div *ngFor="let key of infoKeys">
+        <span style="font-weight: bold">{{ key }} : </span><span>{{ extraInfo[key] }}</span>
+    </div>
+</mat-card>

@@ -22,6 +22,9 @@ export class AppComponent {
   public list: any[] = [
     {
       name: 'Location', id: 'location', route: 'location'
+    },
+    {
+      name: 'Location Ip', id: 'location_ip', route: 'location_ip'
     }
   ];
   @ViewChild('sidenav') sidenav: MatSidenav;
