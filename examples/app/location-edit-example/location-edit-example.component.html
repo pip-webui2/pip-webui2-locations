@@ -1,2 +1,3 @@
 <h3>Simple editing</h3>
-<pip-location-edit (onChangeLocation)="onChangeLocation($event)"></pip-location-edit>
+<mat-slide-toggle [(ngModel)]="disabled" style="margin-bottom: 16px;">Disabled</mat-slide-toggle>
+<pip-location-edit [disabled]="disabled" (onChangeLocation)="onChangeLocation($event)"></pip-location-edit>

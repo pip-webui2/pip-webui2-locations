@@ -21,6 +21,7 @@ export class PiplocationEditComponent implements OnInit, AfterViewInit {
     };
     private _initialized: boolean = false;
     private map: any;
+    private _disabled: boolean = false;
     public locationNameGeocoder: string = null;
     public marker: any = null;
 
@@ -47,16 +48,27 @@ export class PiplocationEditComponent implements OnInit, AfterViewInit {
     }
     @Input() height: string = '300px';
     @Input() width: string = '100%';
+    @Input() public set disabled(disabled: boolean) {
+        this._disabled = disabled;
+        this.updateMapAndMarkerInteractivity();
+    }
+
+    public get disabled() {
+        return this._disabled;
+    }
 
     private mapOptions = {
         zoom: 1,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
-        disableDefaultUI: true
+        disableDefaultUI: true,
+        draggable: !this._disabled,
+        disableDoubleClickZoom: this._disabled,
+        scrollwheel: !this._disabled
     };
 
     private markerOptions = {
         animation: google.maps.Animation.DROP,
-        draggable: true
+        draggable: !this._disabled
     };
 
     public zoom: number = this.mapOptions.zoom;
@@ -201,8 +213,21 @@ export class PiplocationEditComponent implements OnInit, AfterViewInit {
                 }
 
                 moveMap(this.map, null, { coordinates: [location.lat(), location.lng()] })
+                if (this.map.getZoom() < 12) this.map.setZoom(12);
                 this.addMarker(false);
             }
         });
+    }
+
+    private updateMapAndMarkerInteractivity() {
+        if (this.map) {
+            this.map.set('draggable', !this._disabled);
+            this.map.set('scrollwheel', !this._disabled);
+            this.map.set('disableDoubleClickZoom', this._disabled);
+        }
+
+        if (this.marker) {
+            this.marker.set('draggable', !this._disabled);
+        }
     }
 }

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
-import { MatButtonModule, MatIconModule, MatButtonToggleModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatButtonToggleModule, MatSlideToggleModule } from '@angular/material';
 
 import { LocationEditExampleComponent } from './location-edit-example.component';
 import { PiplocationEditModule } from '../pip-webui2-locations';
@@ -19,6 +19,7 @@ import { PiplocationEditModule } from '../pip-webui2-locations';
     MatButtonModule,
     MatIconModule,
     MatButtonToggleModule,
+    MatSlideToggleModule,
 
     PiplocationEditModule
   ],

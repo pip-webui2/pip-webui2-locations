@@ -12,4 +12,6 @@ export class LocationEditExampleComponent implements OnInit {
 	public onChangeLocation(data) {
 		console.log('data', data);
 	}
+
+	public disabled: boolean = false;
 }
