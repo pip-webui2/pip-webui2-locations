@@ -4,7 +4,7 @@ import * as _ from 'lodash';
 import { Component, Input, Output, OnInit, ChangeDetectorRef, AfterViewInit, EventEmitter, Renderer, ElementRef, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { initMap, moveMap, verifyPosition } from '../shared/locations-utils';
+import { initMap, moveMap, verifyPosition, onResize } from '../shared/locations-utils';
 
 @Component({
     selector: 'pip-location-edit',
@@ -22,6 +22,7 @@ export class PiplocationEditComponent implements OnInit, AfterViewInit {
     private _initialized: boolean = false;
     private map: any;
     private _disabled: boolean = false;
+    private _showInput: boolean = false;
     public locationNameGeocoder: string = null;
     public marker: any = null;
 
@@ -52,7 +53,16 @@ export class PiplocationEditComponent implements OnInit, AfterViewInit {
         this._disabled = disabled;
         this.updateMapAndMarkerInteractivity();
     }
-    @Input() public showInput: boolean = true;
+    @Input() public set showInput(show: boolean) {
+        this._showInput = show;
+        setTimeout(() => {
+            onResize(this.map);
+        });
+    }
+
+    public get showInput() {
+        return this._showInput;
+    }
 
     public get disabled() {
         return this._disabled;
@@ -88,6 +98,10 @@ export class PiplocationEditComponent implements OnInit, AfterViewInit {
         this.initMap();
     }
 
+    ngOnDestroy() {
+        google.maps.event.clearListeners(window, 'resize');
+    }
+
     private addDragEndListener() {
         google.maps.event.addListener(this.marker, 'dragend', () => {
             this.locationName = null;
@@ -96,6 +110,9 @@ export class PiplocationEditComponent implements OnInit, AfterViewInit {
     }
 
     private initMap() {
+        google.maps.event.addDomListener(window, "resize", () => {
+            onResize(this.map);
+        });
         let results = initMap(this.elRef.nativeElement.querySelector('.map-container'), this.mapOptions, this._position, false, this.mapOptions, () => {
             this._initialized = true;
         });
@@ -180,7 +197,6 @@ export class PiplocationEditComponent implements OnInit, AfterViewInit {
                 });
             });
         } else {
-            console.log('here');
             if (this.onChangeLocation) this.onChangeLocation.emit({
                 coordinates: [
                     coordinates.lat(),

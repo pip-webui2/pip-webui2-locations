@@ -4,14 +4,14 @@ import * as _ from 'lodash';
 import { Component, Input, Output, OnInit, AfterViewInit, EventEmitter, Renderer, ElementRef, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { initMap, moveMap, generatePosition } from '../shared/locations-utils';
+import { initMap, moveMap, generatePosition, onResize } from '../shared/locations-utils';
 
 @Component({
     selector: 'pip-location-ip',
     templateUrl: 'location-ip.component.html',
     styleUrls: ['./location-ip.component.scss']
 })
-export class PipLocationIpComponent implements OnInit, AfterViewInit {
+export class PipLocationIpComponent implements OnInit {
     ngOnInit() { }
 
     private _ipAddress: string = null;
@@ -53,14 +53,18 @@ export class PipLocationIpComponent implements OnInit, AfterViewInit {
         renderer.setElementStyle(elRef.nativeElement, 'width', this.width);
     }
 
-    ngAfterViewInit() { }
+    ngOnDestroy() { 
+        google.maps.event.clearListeners(window, 'resize');
+    }
 
     private getInfo() {
         this.http.get(this.getInfoUrl + this._ipAddress).subscribe((data: any) => {
             this._position = generatePosition(data.latitude, data.longitude);
-            console.log('ok ');
             this.error = false;
             if (!this._initialized) {
+                google.maps.event.addDomListener(window, "resize", () => {
+                    onResize(this.map);
+                });
                 let results = initMap(this.elRef.nativeElement.querySelector('.map-container'), this.mapOptions, this._position, true, null, () => {
                     this._initialized = true;
                 });

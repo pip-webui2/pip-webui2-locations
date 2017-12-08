@@ -3,7 +3,7 @@ declare let google: any;
 import * as _ from 'lodash';
 import { Component, Input, Output, OnInit, AfterViewInit, EventEmitter, Renderer, ElementRef, HostListener } from '@angular/core';
 
-import { initMap, moveMap, verifyPosition } from '../shared/locations-utils';
+import { initMap, moveMap, verifyPosition, onResize } from '../shared/locations-utils';
 
 @Component({
     selector: 'pip-location',
@@ -61,12 +61,19 @@ export class PipLocationComponent implements OnInit, AfterViewInit {
     ngAfterViewInit() {
         this._mapContainer = this.elRef.nativeElement.querySelector('.pip-location-container');
         if (this.isCollapsabele) {
+            google.maps.event.addDomListener(window, "resize", () => {
+                onResize(this.map);
+            });
             let result = initMap(this._mapContainer, this.mapOptions, this._position, true, null, () => {
                 if (this.showMap) this._initialized = true;
             });
             this.map = result.map;
             this.marker = result.marker;
         }
+    }
+
+    ngOnDestroy() { 
+        google.maps.event.clearListeners(window, 'resize');
     }
 
     public toggleMap() {

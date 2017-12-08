@@ -41,6 +41,7 @@ export function moveMap(map, marker, newPosition) {
 
     if (marker) marker.setPosition(coordinates);
     map.panTo(coordinates);
+    map.setCenter(coordinates);
 }
 
 export function verifyPosition(position: any) {
@@ -53,4 +54,12 @@ export function generatePosition(latitude: any, longitude: any) {
             latitude, longitude
         ]
     };
+}
+
+export function onResize(map) {
+    if (!map) return;
+
+    let center = map.getCenter();
+    google.maps.event.trigger(map, "resize");
+    map.setCenter(center);
 }
