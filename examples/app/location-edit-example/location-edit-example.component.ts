@@ -14,4 +14,5 @@ export class LocationEditExampleComponent implements OnInit {
 	}
 
 	public disabled: boolean = false;
+	public showInput: boolean = true;
 }

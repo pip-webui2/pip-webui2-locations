@@ -52,6 +52,7 @@ export class PiplocationEditComponent implements OnInit, AfterViewInit {
         this._disabled = disabled;
         this.updateMapAndMarkerInteractivity();
     }
+    @Input() public showInput: boolean = true;
 
     public get disabled() {
         return this._disabled;
