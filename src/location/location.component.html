@@ -1,10 +1,10 @@
-<button mat-button class="pip-location-name" (click)="toggleMap()" [disabled]="!isCollapsabele || disabled">
+<button mat-button class="pip-location-name" (click)="toggleMap()" [disabled]="!isCollapsable || disabled">
     <div>
         <mat-icon *ngIf="showIcon">{{ icon || 'place' }}</mat-icon>
         <span class="pip-location-text">{{ locationName }}</span>
-        <mat-icon class="expander-icon" [ngClass]="{'opened': showMap}" *ngIf="isCollapsabele">expand_more</mat-icon>
+        <mat-icon class="expander-icon" [ngClass]="{'opened': showMap}" *ngIf="isCollapsable">expand_more</mat-icon>
     </div>
 </button>
 
-<div *ngIf="isCollapsabele" class="pip-location-container" [ngClass]="{'opened': showMap}">
+<div *ngIf="isCollapsable" class="pip-location-container" [ngClass]="{'opened': showMap}">
 </div>

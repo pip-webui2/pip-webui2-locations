@@ -159,7 +159,7 @@ export class PiplocationEditComponent implements OnInit, AfterViewInit {
                     coordinates: [position.coords.latitude, position.coords.longitude]
                 });
                 if (this.map.getZoom() < 12) this.map.setZoom(12);
-                if (!this.marker) this.addMarker();
+                this.addMarker();
             }
         );
     }

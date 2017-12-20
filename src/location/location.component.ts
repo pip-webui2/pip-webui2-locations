@@ -12,7 +12,7 @@ import { initMap, moveMap, verifyPosition, onResize } from '../shared/locations-
 })
 export class PipLocationComponent implements OnInit, AfterViewInit {
     public showMap: boolean = false;
-    public isCollapsabele: boolean = true;
+    public isCollapsable: boolean = true;
     public showIcon: boolean = true;
     private _mapContainer: any;
     private _position: any = null;
@@ -30,7 +30,7 @@ export class PipLocationComponent implements OnInit, AfterViewInit {
     };
 
     @Input() set collapsable(is: boolean) {
-        this.isCollapsabele = is;
+        this.isCollapsable = is;
     }
     @Input() public locationName: string;
     @Input() set locationPos(position: any) {
@@ -60,7 +60,7 @@ export class PipLocationComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit() {
         this._mapContainer = this.elRef.nativeElement.querySelector('.pip-location-container');
-        if (this.isCollapsabele) {
+        if (this.isCollapsable) {
             google.maps.event.addDomListener(window, "resize", () => {
                 onResize(this.map);
             });
@@ -81,7 +81,7 @@ export class PipLocationComponent implements OnInit, AfterViewInit {
         if (this.showMap) {
             if (!this._initialized) {
                 setTimeout(() => {
-                    if (this.isCollapsabele) {
+                    if (this.isCollapsable) {
                         let result = initMap(this._mapContainer, this.mapOptions, this._position, true, null, () => {
                             if (this.showMap) this._initialized = true;
                         });
