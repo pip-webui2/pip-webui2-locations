@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 import { MatButtonModule, MatIconModule } from '@angular/material';
 
 import { LocationExampleComponent } from './location-example.component';
@@ -16,6 +17,7 @@ import { PipLocationModule } from '../pip-webui2-locations';
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
+    TranslateModule,
     MatButtonModule,
     MatIconModule,
 

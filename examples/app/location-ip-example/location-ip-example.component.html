@@ -1,5 +1,5 @@
 <mat-form-field >
-    <input matInput placeholder="Ip address" [(ngModel)]="ipAddress">
+    <input matInput placeholder="{{ 'EXAMPLES.IP_ADDRESS' | translate }}" [(ngModel)]="ipAddress">
 </mat-form-field>
 <pip-location-ip [ipAddress]="ipAddress" (onExtraInfo)="getExtraInfo($event)"></pip-location-ip>
 

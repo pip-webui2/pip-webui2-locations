@@ -77,7 +77,7 @@ export class PiplocationEditComponent implements OnInit, AfterViewInit {
         scrollwheel: !this._disabled
     };
 
-    private markerOptions = {
+    private markerOptions: any = {
         animation: google.maps.Animation.DROP,
         draggable: !this._disabled
     };
