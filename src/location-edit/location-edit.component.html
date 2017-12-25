@@ -1,4 +1,4 @@
-<mat-form-field *ngIf="showInput">
+<mat-form-field *ngIf="showInput" floatLabel="never">
     <input matInput placeholder="Location name" [disabled]="disabled" [ngModel]="locationNameGeocoder" (ngModelChange)="onNameChange($event)">
 </mat-form-field>
 

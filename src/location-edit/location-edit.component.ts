@@ -39,7 +39,7 @@ export class PiplocationEditComponent implements OnInit, AfterViewInit {
                 this._position.coordinates[0],
                 this._position.coordinates[1]
             ));
-            if (this._initialized) {
+            if (!this._initialized) {
                 this.mapOptions.zoom = 13;
                 this.initMap();
             } else {
