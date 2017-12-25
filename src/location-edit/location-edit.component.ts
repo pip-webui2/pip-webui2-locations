@@ -120,6 +120,7 @@ export class PiplocationEditComponent implements OnInit, AfterViewInit {
         if (results.marker) {
             this.marker = results.marker;
             this.addDragEndListener();
+            if (this._position) moveMap(this.map, this.marker, this._position);
         }
     }
 
