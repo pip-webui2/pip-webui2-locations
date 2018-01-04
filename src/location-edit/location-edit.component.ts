@@ -1,6 +1,5 @@
 declare let google: any;
 
-import * as _ from 'lodash';
 import { Component, Input, Output, OnInit, ChangeDetectorRef, AfterViewInit, EventEmitter, Renderer, ElementRef, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -23,6 +22,7 @@ export class PiplocationEditComponent implements OnInit, AfterViewInit {
     private map: any;
     private _disabled: boolean = false;
     private _showInput: boolean = false;
+    private locationJustChanged: boolean = false;
     public locationNameGeocoder: string = null;
     public marker: any = null;
 
@@ -34,6 +34,7 @@ export class PiplocationEditComponent implements OnInit, AfterViewInit {
     }
     @Input() set locationPos(position: any) {
         if (verifyPosition(position)) {
+            if (this._position == position) return;
             this._position = position;
             this.setLocationName(new google.maps.LatLng(
                 this._position.coordinates[0],
@@ -131,7 +132,8 @@ export class PiplocationEditComponent implements OnInit, AfterViewInit {
     private addMarker(setName: boolean = true) {
         if (this.marker) this.removeMarker();
         let center = this.map.getCenter();
-        let markerOptions = _.cloneDeep(this.markerOptions);
+        let markerOptions: any = {}; 
+        Object.assign(markerOptions, this.markerOptions);
         markerOptions.position = center;
         markerOptions.map = this.map;
 
@@ -187,28 +189,31 @@ export class PiplocationEditComponent implements OnInit, AfterViewInit {
 
     private changeLocation(setName: boolean = true) {
         const coordinates = this.marker.getPosition();
+        this._position = {coordinates: [
+            coordinates.lat(),
+            coordinates.lng()
+        ]};
         if (setName) {
+            this.locationJustChanged = true;
             this.setLocationName(coordinates, () => {
                 if (this.onChangeLocation) this.onChangeLocation.emit({
-                    coordinates: [
-                        coordinates.lat(),
-                        coordinates.lng()
-                    ],
+                    coordinates: this._position.coordinates,
                     locationName: this.locationNameGeocoder
                 });
             });
         } else {
             if (this.onChangeLocation) this.onChangeLocation.emit({
-                coordinates: [
-                    coordinates.lat(),
-                    coordinates.lng()
-                ],
+                coordinates: this._position.coordinates,
                 locationName: this.locationNameGeocoder
             });
         }
     }
 
     private getPositionByName() {
+        if (this.locationJustChanged) {
+            this.locationJustChanged = false;
+            return;
+        }
         const geocoder = new google.maps.Geocoder();
         geocoder.geocode({
             address: this.locationNameGeocoder
@@ -223,6 +228,9 @@ export class PiplocationEditComponent implements OnInit, AfterViewInit {
 
                 const geometry = results[0].geometry || {},
                     location = geometry.location || {};
+
+                if (location.lat() == this._position.coordinates[0] && 
+                        location.lng() == this._position.coordinates[1]) return;
 
                 // Check for empty results again
                 if (location.lat === null || location.lng === null) {

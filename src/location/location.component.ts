@@ -1,6 +1,5 @@
 declare let google: any;
 
-import * as _ from 'lodash';
 import { Component, Input, Output, OnInit, AfterViewInit, EventEmitter, Renderer, ElementRef, HostListener } from '@angular/core';
 
 import { initMap, moveMap, verifyPosition, onResize } from '../shared/locations-utils';

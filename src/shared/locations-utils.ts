@@ -1,5 +1,4 @@
 declare let google: any;
-import * as _ from 'lodash';
 
 export function initMap(mapContainer, mapOptions, position, showMarker = true, markerOptions?, callback?: Function) {
     const coordinates = new google.maps.LatLng(
@@ -45,7 +44,7 @@ export function moveMap(map, marker, newPosition) {
 }
 
 export function verifyPosition(position: any) {
-    return position.coordinates && _.isArray(position.coordinates) && position.coordinates.length == 2;
+    return position.coordinates && Array.isArray(position.coordinates) && position.coordinates.length == 2;
 }
 
 export function generatePosition(latitude: any, longitude: any) {
