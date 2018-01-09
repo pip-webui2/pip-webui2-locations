@@ -33,7 +33,7 @@ locationName = 'Donetsk, Kadievskaya st.';
 **Example on the image**
 
 <a href="https://github.com/pip-webui2/pip-webui2-locations/raw/master/doc/images/location.png" style="display: block; text-align: center;">
-    <img style="max-width: 300px" src="https://github.com/pip-webui2/pip-webui2-locations/raw/master/doc/images/locations.png"/>
+    <img style="max-width: 300px" src="https://github.com/pip-webui2/pip-webui2-locations/raw/master/doc/images/location.png"/>
 </a>
 
 ### Location IP 
@@ -58,7 +58,7 @@ getExtraInfo(info) {
 **Example on the image**
 
 <a href="https://github.com/pip-webui2/pip-webui2-locations/raw/master/doc/images/location-ip.png" style="display: block; text-align: center;">
-    <img style="max-width: 300px" src="https://github.com/pip-webui2/pip-webui2-locations/raw/master/doc/images/locations-ip.png"/>
+    <img style="max-width: 300px" src="https://github.com/pip-webui2/pip-webui2-locations/raw/master/doc/images/location-ip.png"/>
 </a>
 
 ### Location edit 
