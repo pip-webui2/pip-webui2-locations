@@ -83,7 +83,7 @@ onChangeLocation(data) {
 **Example on the image**
 
 <a href="https://github.com/pip-webui2/pip-webui2-locations/raw/master/doc/images/location-edit.png" style="display: block; text-align: center;">
-    <img style="max-width: 300px" src="https://github.com/pip-webui2/pip-webui2-locations/raw/master/doc/images/locations-edit.png"/>
+    <img style="max-width: 300px" src="https://github.com/pip-webui2/pip-webui2-locations/raw/master/doc/images/location-edit.png"/>
 </a>
 
 ## Installation
