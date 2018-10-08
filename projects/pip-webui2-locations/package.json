@@ -1,0 +1,16 @@
+{
+  "name": "pip-webui2-locations",
+  "version": "1.0.0-beta.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pip-webui2/pip-webui2-locations"
+  },
+  "peerDependencies": {
+    "@angular/cdk": "^6.4.7",
+    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
+    "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
+    "@angular/flex-layout": "^6.0.0-beta.18",
+    "@angular/material": "^6.4.7",
+    "pip-webui2-themes-temp": "^1.0.0-beta.3"
+  }
+}

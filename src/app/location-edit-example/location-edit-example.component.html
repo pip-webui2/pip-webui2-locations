@@ -1,0 +1,6 @@
+<h3>{{ 'EXAMPLES.SIMPLE_EDITING' | translate }}</h3>
+<mat-slide-toggle [(ngModel)]="showInput" style="display: block;margin-bottom: 8px;">{{ 'EXAMPLES.SHOW_INPUT' |
+  translate }}</mat-slide-toggle>
+<mat-slide-toggle [(ngModel)]="disabled" style="margin-bottom: 16px;">{{ 'EXAMPLES.DISABLED' | translate }}</mat-slide-toggle>
+<pip-location-edit [showInput]="showInput" [disabled]="disabled" [locationPos]="locationPos" [locationName]="locationName"
+                   (onChangeLocation)="onChangeLocation($event)"></pip-location-edit>

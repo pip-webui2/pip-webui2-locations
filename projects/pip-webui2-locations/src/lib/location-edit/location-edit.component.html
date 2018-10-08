@@ -1,0 +1,20 @@
+<mat-form-field *ngIf="showInput" floatLabel="never">
+    <input matInput placeholder="Location name" [disabled]="disabled" [ngModel]="locationNameGeocoder" (ngModelChange)="onNameChange($event)">
+</mat-form-field>
+
+<div class="relative-container" [ngClass]="{ 'without-input' : !showInput }">
+    <div class="map-container">
+    </div>
+    <button mat-mini-fab class="marker" [disabled]="disabled" (click)="toggleMarker()">
+        <mat-icon>{{ marker ? 'clear' : 'add_location' }}</mat-icon>
+    </button>
+    <button mat-mini-fab class="location" [disabled]="disabled" (click)="getCurrentPosition()">
+        <mat-icon>my_location</mat-icon>
+    </button>
+    <button mat-mini-fab class="zoom-in" [disabled]="disabled" (click)="zoomIn()">
+        <mat-icon>add</mat-icon>
+    </button>
+    <button mat-mini-fab class="zoom-out" [disabled]="disabled" (click)="zoomOut()">
+        <mat-icon>remove</mat-icon>
+    </button>
+</div>
