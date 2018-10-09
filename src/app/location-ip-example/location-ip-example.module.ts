@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatButtonModule, MatIconModule, MatInputModule, MatProgressSpinnerModule, MatCardModule } from '@angular/material';
-import { PipSidenavModule } from 'pip-webui2-layouts-temp';
+import { PipSidenavModule } from 'pip-webui2-layouts';
 import { PipLocationIpModule } from 'pip-webui2-locations';
-import { PipNavModule } from 'pip-webui2-nav-temp';
+import { PipNavModule } from 'pip-webui2-nav';
 
 import { LocationIpExampleComponent } from './location-ip-example.component';
 
