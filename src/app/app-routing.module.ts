@@ -9,7 +9,7 @@ const appRoutes: Routes = [
     { path: 'locations', component: LocationsExampleComponent },
     { path: 'location_ip', component: LocationIpExampleComponent },
     { path: 'location_edit', component: LocationEditExampleComponent },
-    { path: '', pathMatch: 'full', redirectTo: 'locations' }
+    { path: '**', redirectTo: 'locations' }
 ];
 
 @NgModule({

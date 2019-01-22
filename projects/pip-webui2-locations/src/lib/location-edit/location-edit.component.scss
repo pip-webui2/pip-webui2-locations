@@ -1,6 +1,5 @@
-@import '~@angular/material/theming';
-@import '~pip-webui2-themes/styles.scss';
-@include mat-core();
+@import '~pip-webui2-themes/variables';
+
 @mixin location-edit-mixin($theme) {
     $background: map-get($theme, background);
     $foreground: map-get($theme, foreground);
@@ -10,60 +9,10 @@
     }
 }
 
-.unicorn-dark-theme {
-    @include location-edit-mixin($dark-theme);
-}
-
-.candy-theme {
-    @include location-edit-mixin($candy-app-theme);
-}
-
-.pip-blue-theme {
-    @include location-edit-mixin($pip-blue-theme);
-}
-
-.pip-grey-theme {
-    @include location-edit-mixin($pip-grey-theme);
-}
-
-.pip-navy-theme {
-    @include location-edit-mixin($pip-navy-theme);
-}
-
-.pip-amber-theme {
-    @include location-edit-mixin($pip-amber-theme);
-}
-
-.pip-green-theme {
-    @include location-edit-mixin($pip-green-theme);
-}
-
-.pip-orange-theme {
-    @include location-edit-mixin($pip-orange-theme);
-}
-
-.pip-pink-theme {
-    @include location-edit-mixin($pip-pink-theme);
-}
-
-.pip-dark-theme {
-    @include location-edit-mixin($pip-dark-theme);
-}
-
-.pip-black-theme {
-    @include location-edit-mixin($pip-black-theme);
-}
-
-.bootbarn-warm-theme {
-    @include location-edit-mixin($bootbarn-warm-theme);
-}
-
-.bootbarn-cool-theme {
-    @include location-edit-mixin($bootbarn-cool-theme);
-}
-
-.bootbarn-mono-theme {
-    @include location-edit-mixin($bootbarn-mono-theme);
+@each $class, $theme in $themes {
+    .#{$class} {
+        @include location-edit-mixin($theme);
+    }
 }
 
 :host {

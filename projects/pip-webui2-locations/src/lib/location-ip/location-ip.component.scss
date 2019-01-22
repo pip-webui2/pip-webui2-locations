@@ -1,6 +1,5 @@
-@import '~@angular/material/theming';
-@import '~pip-webui2-themes/styles.scss';
-@include mat-core();
+@import '~pip-webui2-themes/variables';
+
 @mixin location-ip-mixin($theme) {
     $background: map-get($theme, background);
     :host .error {
@@ -8,60 +7,10 @@
     }
 }
 
-.unicorn-dark-theme {
-    @include location-ip-mixin($dark-theme);
-}
-
-.candy-theme {
-    @include location-ip-mixin($candy-app-theme);
-}
-
-.pip-blue-theme {
-    @include location-ip-mixin($pip-blue-theme);
-}
-
-.pip-grey-theme {
-    @include location-ip-mixin($pip-grey-theme);
-}
-
-.pip-navy-theme {
-    @include location-ip-mixin($pip-navy-theme);
-}
-
-.pip-amber-theme {
-    @include location-ip-mixin($pip-amber-theme);
-}
-
-.pip-green-theme {
-    @include location-ip-mixin($pip-green-theme);
-}
-
-.pip-orange-theme {
-    @include location-ip-mixin($pip-orange-theme);
-}
-
-.pip-pink-theme {
-    @include location-ip-mixin($pip-pink-theme);
-}
-
-.pip-dark-theme {
-    @include location-ip-mixin($pip-dark-theme);
-}
-
-.pip-black-theme {
-    @include location-ip-mixin($pip-black-theme);
-}
-
-.bootbarn-warm-theme {
-    @include location-ip-mixin($bootbarn-warm-theme);
-}
-
-.bootbarn-cool-theme {
-    @include location-ip-mixin($bootbarn-cool-theme);
-}
-
-.bootbarn-mono-theme {
-    @include location-ip-mixin($bootbarn-mono-theme);
+@each $class, $theme in $themes {
+    .#{$class} {
+        @include location-ip-mixin($theme);
+    }
 }
 
 :host {

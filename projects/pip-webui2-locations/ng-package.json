@@ -2,7 +2,10 @@
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/pip-webui2-locations",
   "lib": {
-    "entryFile": "src/public_api.ts"
+    "entryFile": "src/public_api.ts",
+    "umdModuleIds": {
+      "pip-webui2-themes": "^1.1.10"
+    }
   },
   "whitelistedNonPeerDependencies": [
     "^pip-webui2"
