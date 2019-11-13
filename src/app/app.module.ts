@@ -43,7 +43,7 @@ import { LocationEditExampleModule } from './location-edit-example/location-edit
     TranslateModule.forRoot(),
 
     PipThemesModule.forRoot(),
-    PipAppbarModule,
+    PipAppbarModule.forRoot(),
     PipRightnavModule.forRoot(),
     PipMediaModule.forRoot(),
     PipSidenavModule.forRoot(),
