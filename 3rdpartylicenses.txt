@@ -33,7 +33,7 @@ MIT
 
 lodash
 MIT
-Copyright JS Foundation and other contributors <https://js.foundation/>
+Copyright OpenJS Foundation and other contributors <https://openjsf.org/>
 
 Based on Underscore.js, copyright Jeremy Ashkenas,
 DocumentCloud and Investigative Reporters & Editors <http://underscorejs.org/>
@@ -397,7 +397,7 @@ SOFTWARE.
 MIT
 The MIT License
 
-Copyright (c) 2018 Google LLC.
+Copyright (c) 2019 Google LLC.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -422,7 +422,7 @@ THE SOFTWARE.
 MIT
 The MIT License
 
-Copyright (c) 2018 Google LLC.
+Copyright (c) 2019 Google LLC.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -543,6 +543,10 @@ SOFTWARE.
 
 @angular/material/sidenav
 
+@angular/material/select
+
+@angular/material/tabs
+
 @angular/material/toolbar
 
 @angular/material/menu
@@ -578,7 +582,7 @@ SOFTWARE.
 
 core-js
 MIT
-Copyright (c) 2014-2018 Denis Pushkarev
+Copyright (c) 2014-2019 Denis Pushkarev
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
