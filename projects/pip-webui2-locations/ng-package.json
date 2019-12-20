@@ -4,7 +4,7 @@
   "lib": {
     "entryFile": "src/public_api.ts",
     "umdModuleIds": {
-      "pip-webui2-themes": "^1.1.20"
+      "pip-webui2-themes": "^1.1.24"
     }
   },
   "whitelistedNonPeerDependencies": [
